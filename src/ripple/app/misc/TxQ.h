@@ -72,13 +72,13 @@ public:
 
             Can be overridden by @ref queueSizeMin
         */
-        std::size_t ledgersInQueue = 20;
+        std::size_t ledgersInQueue = 500;
         /** The smallest limit the queue is allowed.
 
             Will allow more than `ledgersInQueue` in the queue
             if ledgers are small.
         */
-        std::size_t queueSizeMin = 2000;
+        std::size_t queueSizeMin = 5000;
         /** Extra percentage required on the fee level of a queued
             transaction to replace that transaction with another
             with the same sequence number.
@@ -107,13 +107,13 @@ public:
         std::uint64_t minimumEscalationMultiplier = baseLevel * 500;
         /// Minimum number of transactions to allow into the ledger
         /// before escalation, regardless of the prior ledger's size.
-        std::uint32_t minimumTxnInLedger = 5;
+        std::uint32_t minimumTxnInLedger = 500;
         /// Like @ref minimumTxnInLedger for standalone mode.
         /// Primarily so that tests don't need to worry about queuing.
         std::uint32_t minimumTxnInLedgerSA = 1000;
         /// Number of transactions per ledger that fee escalation "works
         /// towards".
-        std::uint32_t targetTxnInLedger = 50;
+        std::uint32_t targetTxnInLedger = 5000;
         /** Optional maximum allowed value of transactions per ledger before
             fee escalation kicks in. By default, the maximum is an emergent
             property of network, validator, and consensus performance. This
@@ -136,7 +136,7 @@ public:
             ledger is validated normally with 501 transactions, then the
             expected ledger size will be updated to 601.
         */
-        std::uint32_t normalConsensusIncreasePercent = 20;
+        std::uint32_t normalConsensusIncreasePercent = 40;
         /** When consensus takes longer than appropriate, the expected
             ledger size is updated to the lesser of the previous ledger
             size and the current expected ledger size minus this
@@ -152,14 +152,14 @@ public:
         */
         std::uint32_t slowConsensusDecreasePercent = 50;
         /// Maximum number of transactions that can be queued by one account.
-        std::uint32_t maximumTxnPerAccount = 10;
+        std::uint32_t maximumTxnPerAccount = 200;
         /** Minimum difference between the current ledger sequence and a
             transaction's `LastLedgerSequence` for the transaction to be
             queueable. Decreases the chance a transaction will get queued
             and broadcast only to expire before it gets a chance to be
             processed.
         */
-        std::uint32_t minimumLastLedgerBuffer = 2;
+        std::uint32_t minimumLastLedgerBuffer = 10;
         /** So we don't deal with "infinite" fee levels, treat
             any transaction with a 0 base fee (i.e. SetRegularKey
             password recovery) as having this fee level.
